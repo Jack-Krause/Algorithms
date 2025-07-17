@@ -27,6 +27,18 @@ public abstract class AbstractSortingTest {
         assertEquals(List.of(1, 1, 3, 4, 5, 9), context.execute(input));
     }
 
+    @Test void duplicatesList() {
+        var context = new AlgorithmContext<>(sortAlg());
+        List<Integer> input = Arrays.asList(2, 3, 2, 1, 3);
+        assertEquals(List.of(1, 2, 2, 3, 3), context.execute(input));
+    }
+
+    @Test void reversedList() {
+        var context = new AlgorithmContext<>(sortAlg());
+        List<Integer> input = Arrays.asList(5, 4, 3, 2, 1);
+        assertEquals(List.of(1, 2, 3, 4, 5), context.execute(input));
+    }
+
 
 
 
