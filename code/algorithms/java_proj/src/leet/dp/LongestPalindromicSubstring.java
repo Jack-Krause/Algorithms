@@ -1,6 +1,7 @@
 package leet.dp;
 
 import java.sql.SQLOutput;
+import java.util.Arrays;
 
 public class LongestPalindromicSubstring {
 
@@ -32,12 +33,24 @@ public class LongestPalindromicSubstring {
             for (int start = 0; start <= n - L; start++) {
                 int end = start + L - 1;
                 System.out.printf("\s\s start = %d, end = %d\n", start, end);
+
+                // short-circuit if sub-string isn't a palindrome
+                boolean sub_is_palindrome = dp[start + 1][end - 1];
+                if (sub_is_palindrome && (s.charAt(start) == s.charAt(end))) {
+                    dp[start][end] = true;
+                    ans[0] = start;
+                    ans[1] = end;
+                } else {
+                    dp[start][end] = false;
+                }
             }
         }
 
-
-
-
+        for (boolean[] row : dp) {
+            System.out.println(Arrays.toString(row));
+        }
+        System.out.println(Arrays.toString(ans));
+        System.out.println(s.substring(ans[0], ans[1] + 1));
     }
 
 }
